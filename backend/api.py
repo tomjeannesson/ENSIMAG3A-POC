@@ -5,8 +5,20 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
+# Je recupere une liste de liste
+
+a = { "board" : [["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"],
+    ["a","a","a","a","a","a","a","a"]
+    ] }
+
 @app.get("/")
 def read_root():
-    with open("state.json") as f:
-        data = json.load(f)
-    return data
+    return a
+
+#Return un dictionnaire qui contient les données que je veux envoyer
