@@ -17,5 +17,5 @@ void loop() {
     Serial.println(etatBtn) ; // Affiche l’état du bouton sur le moniteur
     Serial1.println(etatBtn) ; // Affiche l’état du bouton sur le moniteur
 
-    delay(1000) ; // Attente de 1000 ms
+    delay(10) ; // Attente de 1000 ms
 }
