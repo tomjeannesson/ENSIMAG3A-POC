@@ -1,101 +1,107 @@
-import Image from "next/image";
+import {
+  FaChessBishop,
+  FaChessKing,
+  FaChessKnight,
+  FaChessPawn,
+  FaChessQueen,
+  FaChessRook,
+} from "react-icons/fa";
+
+type ChessPiece = "r" | "n" | "b" | "q" | "k" | "p" | "R" | "N" | "B" | "Q" | "K" | "P" | null;
+
+const renderPiece = (piece: ChessPiece) => {
+  switch (piece) {
+    case "r":
+      return <FaChessRook className="text-gray-700 text-7xl" />;
+    case "n":
+      return <FaChessKnight className="text-gray-700 text-7xl" />;
+    case "b":
+      return <FaChessBishop className="text-gray-700 text-7xl" />;
+    case "q":
+      return <FaChessQueen className="text-gray-700 text-7xl" />;
+    case "k":
+      return <FaChessKing className="text-gray-700 text-7xl" />;
+    case "p":
+      return <FaChessPawn className="text-gray-700 text-7xl" />;
+    case "R":
+      return <FaChessRook className="text-white text-7xl" />;
+    case "N":
+      return <FaChessKnight className="text-white text-7xl" />;
+    case "B":
+      return <FaChessBishop className="text-white text-7xl" />;
+    case "Q":
+      return <FaChessQueen className="text-white text-7xl" />;
+    case "K":
+      return <FaChessKing className="text-white text-7xl" />;
+    case "P":
+      return <FaChessPawn className="text-white text-7xl" />;
+    default:
+      return null;
+  }
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const initialBoard: ChessPiece[][] = [
+    ["r", "n", "b", "q", "k", "b", "n", "r"],
+    ["p", "p", "p", "p", "p", "p", "p", "p"],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    ["P", "P", "P", "P", "P", "P", "P", "P"],
+    ["R", "N", "B", "Q", "K", "B", "N", "R"],
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="flex bg-gray-700 h-screen">
+
+      <div className="flex flex-col items-center justify-center" style={{ width: "auto" }}>
+        <div className="grid grid-cols-8 border-black m-4 mr-0" style={{ width: "100vh", height: "100vh" }} >
+          {initialBoard.map((row, rowIndex) =>
+            row.map((piece, colIndex) => {
+              const isBlack = (rowIndex + colIndex) % 2 === 1;
+              return (
+                <div
+                  key={`${rowIndex}-${colIndex}`}
+                  className={`relative flex items-center justify-center ${isBlack ? "bg-[#769656]" : "bg-[#eeeed2]"
+                    }`}
+                  style={{ width: "100%", height: "100%" }}
+                >
+                  <div className="absolute w-full h-full flex items-center justify-center">
+                    {renderPiece(piece)}
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      <div className="flex-1 flex flex-col items-center justify-start rounded-lg p-2 m-4 bg-white text-2xl font-semibold font-sans space-y-2">
+        {/* Section Joueur 1 */}
+        <div className="flex flex-col bg-gray-200 items-center justify-center w-full rounded-lg p-2">
+          <label>Joueur 1 :</label>
+          {/* Pièces mangées par Joueur 1 */}
+          <div className="flex flex-wrap gap-2 mt-2">
+            {/* Exemple d'icônes des pièces */}
+            <FaChessPawn className="text-black" />
+            <FaChessKnight className="text-black" />
+          </div>
+        </div>
+
+        {/* Section Joueur 2 */}
+        <div className="flex flex-col bg-gray-200 items-center justify-center w-full rounded-lg p-2">
+          <label>Joueur 2 :</label>
+          {/* Pièces mangées par Joueur 2 */}
+          <div className="flex flex-wrap gap-2 mt-2">
+            {/* Exemple d'icônes des pièces */}
+            <FaChessPawn className="text-black" />
+            <FaChessRook className="text-black" />
+            <FaChessQueen className="text-black" />
+          </div>
+        </div>
+      </div>
     </div>
   );
+
 }
