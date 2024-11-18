@@ -1,0 +1,29 @@
+# Projet POC
+
+## Install
+
+- Backend:
+  - FastAPI:
+
+    `virtualenv .venv`
+
+    `source .venv/bin/activate`
+
+    `pip install "fastapi[standard]"`
+
+- Frontend:
+  - next:
+  
+    `npm i`
+
+## Run
+
+- Backend:
+  - FastAPI:
+
+    `fastapi dev api.py`
+
+- Frontend:
+  - next:
+  
+    `npm run dev`
