@@ -1,6 +1,7 @@
-from serial import Serial
-from pathlib import Path
 import json
+from pathlib import Path
+
+from serial import Serial
 
 # sudo systemctl stop serial-getty@ttyS0.service
 # /etc/systemd/system/poc.service
@@ -19,3 +20,4 @@ while True:
     if data.decode() != "\n":
         with open(data_file_path, "w") as f:
             json.dump(data.decode()[:-2], f)
+            print(data.decode()[:-2])
