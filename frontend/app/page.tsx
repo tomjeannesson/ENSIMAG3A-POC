@@ -212,7 +212,6 @@ export default function Home() {
     const fetchData = async () => {
       setInterval(async () => {
         const res = await axios.get("http://poc-thaj:8000/")
-        console.log(res.data)
         setBoard(res.data)
         const captured = getCapturedPieces(board)
         setWhitesCaptured(captured.whitesCaptured)
@@ -223,7 +222,6 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(board)
   return (
     <div className="flex bg-gray-700 h-screen">
       <div
