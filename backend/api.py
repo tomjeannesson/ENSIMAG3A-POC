@@ -35,6 +35,9 @@ def read_root():
     for i in range(8):
         row = []
         for j in range(8):
-            row.append(board.board[i][j].name)
+            if board.board[i][j] == {}:
+                row.append(None)
+            else:
+                row.append(board.board[i][j].name)
         boardJson.append(row)
     return {"board": boardJson}
