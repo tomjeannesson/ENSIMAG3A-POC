@@ -1,5 +1,6 @@
 import json
 
+import numpy as np
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -31,9 +32,6 @@ board = Board()
 @app.get("/")
 def read_root():
     boardJson = []
-    # with open("state.json") as f:
-    #     board_state = json.load(f)
-    # board.move()
     for i in range(8):
         row = []
         for j in range(8):
@@ -42,4 +40,4 @@ def read_root():
             else:
                 row.append(board.board[i][j].name)
         boardJson.append(row)
-    return {"board": boardJson}
+    return boardJson
