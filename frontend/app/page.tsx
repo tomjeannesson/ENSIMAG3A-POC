@@ -190,7 +190,7 @@ const initialBoard: ChessBoard = [
 ];
 
 export default function Home() {
-  const [board, setBoard] = useState<ChessPiece[][]>([
+  const [board, setBoard] = useState<ChessBoard>([
     [
       "rockWhite",
       "knightWhite",
@@ -243,10 +243,7 @@ export default function Home() {
 
   return (
     <div className="flex bg-gray-700 h-screen">
-      <div
-        className="flex flex-col items-center justify-center"
-        style={{ width: "auto" }}
-      >
+      <div className="flex flex-col w-auto items-center justify-center">
         <div
           className="grid grid-cols-8 border-black m-4 mr-0"
           style={{ width: "100vh", height: "100vh" }}
@@ -273,22 +270,17 @@ export default function Home() {
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-start rounded-lg p-2 m-4 bg-gray-100 text-2xl font-semibold font-sans space-y-2">
-        {/* Section Joueur 1 */}
         <div className="flex flex-col bg-[#769656] text-gray-100 items-center justify-center w-full rounded-lg p-2">
           <label>White Player :</label>
-          {/* Pièces mangées par Joueur 1 */}
           <div className="flex flex-wrap gap-2 mt-2">
-            {blacksCaptured.map((piece, index) => renderPiece(piece, true))}
+            {blacksCaptured.map((piece) => renderPiece(piece, true))}
           </div>
         </div>
 
-        {/* Section Joueur 2 */}
         <div className="flex flex-col text-gray-700 bg-[#769656] items-center justify-center w-full rounded-lg p-2">
           <label>Black Player :</label>
-          {/* Pièces mangées par Joueur 2 */}
           <div className="flex flex-wrap gap-2 mt-2">
-            {/* Exemple d'icônes des pièces */}
-            {whitesCaptured.map((piece, index) => renderPiece(piece, true))}
+            {whitesCaptured.map((piece) => renderPiece(piece, true))}
           </div>
         </div>
       </div>
