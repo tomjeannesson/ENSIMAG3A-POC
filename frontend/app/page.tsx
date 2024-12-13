@@ -1,3 +1,6 @@
+"use client"
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   FaChessBishop,
   FaChessKing,
@@ -54,7 +57,7 @@ const renderPiece = (piece: ChessPiece) => {
 };
 
 export default function Home() {
-  const initialBoard: ChessPiece[][] = [
+  const [board, setBoard] = useState<ChessPiece[][]>([
     ["r", "n", "b", "q", "k", "b", "n", "r"],
     ["p", "p", "p", "p", "p", "p", "p", "p"],
     [null, null, null, null, null, null, null, null],
@@ -63,8 +66,17 @@ export default function Home() {
     [null, null, null, null, null, null, null, null],
     ["P", "P", "P", "P", "P", "P", "P", "P"],
     ["R", "N", "B", "Q", "K", "B", "N", "R"],
-  ];
+  ])
 
+  useEffect(()=>{
+    const  fetchData =  async ()=>{
+      setInterval(()=>{ 
+        const res = axios.get("http://poc-thaj:8000/")
+        console.log(res)
+    }, 1000);
+  }
+  fetchData()
+  },[])
   return (
     <div className="flex bg-gray-700 h-screen">
       <div
@@ -75,7 +87,7 @@ export default function Home() {
           className="grid grid-cols-8 border-black m-4 mr-0"
           style={{ width: "100vh", height: "100vh" }}
         >
-          {initialBoard.map((row, rowIndex) =>
+          {board.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
               const isBlack = (rowIndex + colIndex) % 2 === 1;
               return (
