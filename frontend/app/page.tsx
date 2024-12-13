@@ -262,7 +262,7 @@ export default function Home() {
           className="grid grid-cols-8 border-black m-4 mr-0"
           style={{ width: "100vh", height: "100vh" }}
         >
-          {board.map((row, rowIndex) =>
+          {board?.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
               const isBlack = (rowIndex + colIndex) % 2 === 1;
               return (
