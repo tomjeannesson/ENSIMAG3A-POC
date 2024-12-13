@@ -1,3 +1,6 @@
+"use client";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   FaChessBishop,
   FaChessKing,
@@ -187,9 +190,56 @@ const initialBoard: ChessBoard = [
 ];
 
 export default function Home() {
-  const { whitesCaptured, blacksCaptured } = getCapturedPieces(initialBoard);
-  console.log(whitesCaptured);
-  console.log(blacksCaptured);
+  const [board, setBoard] = useState<ChessPiece[][]>([
+    [
+      "rockWhite",
+      "knightWhite",
+      null,
+      "queenWhite",
+      "kingWhite",
+      "bishopWhite",
+      "knightWhite",
+      "rockWhite",
+    ],
+    [null, null, null, null, null, null, null, "pawnWhite"],
+    [null, null, null, "pawnBlack", null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [
+      null,
+      "pawnBlack",
+      "pawnBlack",
+      null,
+      "pawnBlack",
+      "pawnBlack",
+      "pawnBlack",
+      "pawnBlack",
+    ],
+    [
+      null,
+      "knightBlack",
+      "bishopBlack",
+      "queenBlack",
+      "kingBlack",
+      null,
+      "knightBlack",
+      "rockBlack",
+    ],
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setInterval(async () => {
+        const res = await axios.get("http://poc-thaj:8000/");
+        console.log(res.data);
+        setBoard(res.data);
+      }, 1000);
+    };
+    fetchData();
+  }, []);
+
+  const { whitesCaptured, blacksCaptured } = getCapturedPieces(board);
 
   return (
     <div className="flex bg-gray-700 h-screen">
@@ -201,7 +251,7 @@ export default function Home() {
           className="grid grid-cols-8 border-black m-4 mr-0"
           style={{ width: "100vh", height: "100vh" }}
         >
-          {initialBoard.map((row, rowIndex) =>
+          {board.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
               const isBlack = (rowIndex + colIndex) % 2 === 1;
               return (
