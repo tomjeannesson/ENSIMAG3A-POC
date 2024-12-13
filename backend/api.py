@@ -29,7 +29,7 @@ app.add_middleware(
 board = Board()
 
 boardJson = []
-with open("data.json") as f:
+with open("backend/data.json") as f:
     board_state = json.load(f)
 state_board_prev = board_state
 array_prev = np.array(list(state_board_prev))
@@ -37,7 +37,7 @@ array_prev = np.array(list(state_board_prev))
 
 @app.get("/")
 def read_root():
-    with open("data.json") as f:
+    with open("backend/data.json") as f:
         board_state = json.load(f)
     state_board = board_state
     array_now = np.array(list(state_board))
