@@ -3,14 +3,14 @@ void setup() {
     Serial.begin(115200); //Initialisation de la communication avec le moniteur série
     Serial1.begin(115200);
 
-    for (int pin = 22; pin <= 23; pin++) {
+    for (int pin = 22; pin <= 25; pin++) {
         pinMode(pin, INPUT_PULLUP);
     } 
 }
 
 void loop() { 
     String etatBtn = "";
-    for (int pin = 22; pin <= 23; pin++) {
+    for (int pin = 22; pin <= 25; pin++) {
         int etat = digitalRead(pin);  // Lire l'état du pin
         etatBtn += String(etat);     // Ajouter l'état (0 ou 1) à la chaîne
     }

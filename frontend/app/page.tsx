@@ -7,7 +7,20 @@ import {
   FaChessRook,
 } from "react-icons/fa";
 
-type ChessPiece = "r" | "n" | "b" | "q" | "k" | "p" | "R" | "N" | "B" | "Q" | "K" | "P" | null;
+type ChessPiece =
+  | "r"
+  | "n"
+  | "b"
+  | "q"
+  | "k"
+  | "p"
+  | "R"
+  | "N"
+  | "B"
+  | "Q"
+  | "K"
+  | "P"
+  | null;
 
 const renderPiece = (piece: ChessPiece) => {
   switch (piece) {
@@ -54,17 +67,23 @@ export default function Home() {
 
   return (
     <div className="flex bg-gray-700 h-screen">
-
-      <div className="flex flex-col items-center justify-center" style={{ width: "auto" }}>
-        <div className="grid grid-cols-8 border-black m-4 mr-0" style={{ width: "100vh", height: "100vh" }} >
+      <div
+        className="flex flex-col items-center justify-center"
+        style={{ width: "auto" }}
+      >
+        <div
+          className="grid grid-cols-8 border-black m-4 mr-0"
+          style={{ width: "100vh", height: "100vh" }}
+        >
           {initialBoard.map((row, rowIndex) =>
             row.map((piece, colIndex) => {
               const isBlack = (rowIndex + colIndex) % 2 === 1;
               return (
                 <div
                   key={`${rowIndex}-${colIndex}`}
-                  className={`relative flex items-center justify-center ${isBlack ? "bg-[#769656]" : "bg-[#eeeed2]"
-                    }`}
+                  className={`relative flex items-center justify-center ${
+                    isBlack ? "bg-[#769656]" : "bg-[#eeeed2]"
+                  }`}
                   style={{ width: "100%", height: "100%" }}
                 >
                   <div className="absolute w-full h-full flex items-center justify-center">
@@ -103,5 +122,4 @@ export default function Home() {
       </div>
     </div>
   );
-
 }
