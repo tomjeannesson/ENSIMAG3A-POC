@@ -10,6 +10,8 @@ app = FastAPI()
 origins = [
     "http://poc-thaj:8000/",
     "http://poc-thaj:3000/",
+    "http://poc-thaj:8000",
+    "http://poc-thaj:3000",
     "http://localhost",
     "http://localhost:3000",
     "http://localhost:8080",
