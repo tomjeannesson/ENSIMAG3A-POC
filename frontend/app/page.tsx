@@ -72,6 +72,7 @@ export default function Home() {
     const  fetchData =  async ()=>{
       setInterval(async ()=>{ 
         const res = await axios.get("http://poc-thaj:8000/")
+        console.log(res.data)
         setBoard(res.data)
     }, 1000);
   }
