@@ -2,6 +2,9 @@
 Module to manage the memory of the chessboard.
 """
 
+import numpy as np
+import json
+
 class Piece:
     "Abstract class of chess pieces"
     def legal(self, _bit_pos_start, bit_pos_end, game):
@@ -276,31 +279,31 @@ class Pawn(Piece):
         row_start  = bit_pos_start %  8
         possibilities = []
 
-        if self.color == "white":
-            if game.board[line_start+1][row_start-1] != {}:
+        if game.board[line_start][row_start].color == "white":
+            if row_start != 0 and game.board[line_start+1][row_start-1] != {}:
                 possibilities.append([line_start+1, row_start-1])
-            if game.board[line_start+1][row_start+1] != {}:
+            if row_start != 7 and game.board[line_start+1][row_start+1] != {}:
                 possibilities.append([line_start+1, row_start+1])
             if self.first_move:
                 if game.board[line_start+1][row_start] == {}:
-                    possibilities.append([line_start+1][row_start])
+                    possibilities.append([line_start+1, row_start])
                     if game.board[line_start+2][row_start] == {}:
-                        possibilities.append([line_start+2][row_start])
+                        possibilities.append([line_start+2, row_start])
             if game.board[line_start+1][row_start] == {}:
-                possibilities.append([line_start+1][row_start])
+                possibilities.append([line_start+1, row_start])
 
-        if self.color == "black":
-            if game.board[line_start-1][row_start-1] != {}:
+        if game.board[line_start][row_start].color == "black":
+            if row_start-1>=0 and game.board[line_start-1][row_start-1] != {}:
                 possibilities.append([line_start-1, row_start-1])
-            if game.board[line_start-1][row_start+1] != {}:
+            if row_start+1<8 and game.board[line_start-1][row_start+1] != {}:
                 possibilities.append([line_start-1, row_start+1])
             if self.first_move:
                 if game.board[line_start-1][row_start] == {}:
-                    possibilities.append([line_start-1][row_start])
+                    possibilities.append([line_start-1, row_start])
                     if game.board[line_start-2][row_start] == {}:
-                        possibilities.append([line_start-2][row_start])
+                        possibilities.append([line_start-2, row_start])
             if game.board[line_start-1][row_start] == {}:
-                possibilities.append([line_start-1][row_start])
+                possibilities.append([line_start-1, row_start])
 
         return possibilities
 
@@ -342,9 +345,10 @@ class King(Piece):
 
         for i in [-1, 1]:
             for j in [-1, 1]:
-                possibilities.append([line_start+i][row_start+j])
-            possibilities.append([line_start][row_start+i])
-            possibilities.append([line_start+i][row_start])
+                if not(line_start+i<0 or row_start+j<0):
+                    possibilities.append([line_start+i, row_start+j])
+            possibilities.append([line_start, row_start+i])
+            possibilities.append([line_start+i, row_start])
         return possibilities
 
 class Board:
@@ -366,7 +370,7 @@ class Board:
         bishop_black = Bishop("black", "bishopBlack")
         queen_black = Queen("black", "queenBlack")
         king_black = King("black", "kingBlack")
-        pawn_black = Pawn("white", "pawnBlack", True)
+        pawn_black = Pawn("black", "pawnBlack", True)
         empty = {}
         self.board = [
                         [rock_white, knight_white, bishop_white, queen_white, king_white, bishop_white, knight_white, rock_white],
@@ -451,7 +455,32 @@ class Board:
 
 if __name__ == '__main__':
     game_test = Board()
-    for i in range (8):
-        for j in range(8):
-            print(f"({i}, {j})")
-            print(game_test.board[0][0].name)
+    # for i in range (8):
+    #     for j in range(8):
+    #         print(f"({i}, {j})")
+    #         if game_test.board[i][j] != {}:
+    #             print(game_test.board[i][j].possibilities(i*8+j, game_test))
+    with open("data.json") as f:
+        board_state = json.load(f)
+    state_board_prev = board_state
+    array_prev = np.array(list(state_board_prev))
+    while True:
+        with open("data.json") as f:
+            board_state = json.load(f)
+        state_board = board_state
+        array_now = np.array(list(state_board))
+        if state_board != state_board_prev:
+            bit_pos_start = np.where(array_prev != array_now)[0]
+            state_board_prev = state_board
+            array_prev = array_now
+            with open("data.json") as f:
+                board_state = json.load(f)
+            state_board = board_state
+            while state_board == state_board_prev:
+                with open("data.json") as f:
+                    board_state = json.load(f)
+                state_board = board_state
+            array_now = np.array(list(state_board))
+            bit_pos_end = np.where(array_prev != array_now)[0]
+            game_test.move(bit_pos_start, bit_pos_end)
+        state_board_prev = state_board
