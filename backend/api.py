@@ -64,4 +64,4 @@ def read_root():
             else:
                 row.append(board.board[i][j].name)
         boardJson.append(row)
-    return {"board": boardJson}
+    return boardJson
