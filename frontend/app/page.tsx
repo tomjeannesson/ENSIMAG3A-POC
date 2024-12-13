@@ -70,8 +70,8 @@ export default function Home() {
 
   useEffect(()=>{
     const  fetchData =  async ()=>{
-      setInterval(()=>{ 
-        const res = axios.get("http://poc-thaj:8000/")
+      setInterval(async ()=>{ 
+        const res = await axios.get("http://poc-thaj:8000/")
         console.log(res)
     }, 1000);
   }
