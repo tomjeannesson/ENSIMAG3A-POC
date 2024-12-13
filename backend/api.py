@@ -28,33 +28,9 @@ app.add_middleware(
 
 board = Board()
 
-# with open("backend/data.json") as f:
-#     board_state = json.load(f)
-# state_board_prev = board_state
-# array_prev = np.array(list(state_board_prev))
-
 
 @app.get("/")
 def read_root():
-    # with open("backend/data.json") as f:
-    #     board_state = json.load(f)
-    # state_board = board_state
-    # array_now = np.array(list(state_board))
-    # if state_board != state_board_prev:
-    #     bit_pos_start = np.where(array_prev != array_now)[0]
-    #     state_board_prev = state_board
-    #     array_prev = array_now
-    #     with open("data.json") as f:
-    #         board_state = json.load(f)
-    #     state_board = board_state
-    #     while state_board == state_board_prev:
-    #         with open("data.json") as f:
-    #             board_state = json.load(f)
-    #         state_board = board_state
-    #     array_now = np.array(list(state_board))
-    #     bit_pos_end = np.where(array_prev != array_now)[0]
-    #     board.move(bit_pos_start, bit_pos_end)
-    # state_board_prev = state_board
     boardJson = []
     for i in range(8):
         row = []
