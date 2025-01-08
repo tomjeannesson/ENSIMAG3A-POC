@@ -1,10 +1,9 @@
 import json
 
 import numpy as np
+from board import Board
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from board import Board
 
 app = FastAPI()
 
@@ -31,6 +30,10 @@ board = Board()
 
 @app.get("/")
 def read_root():
+    with open("data.json") as f:
+        data = json.load(f)
+        if len(data) == 64:
+            board.update(data)
     boardJson = []
     for i in range(8):
         row = []
