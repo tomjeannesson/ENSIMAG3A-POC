@@ -142,6 +142,7 @@ function getCapturedPieces(finalBoard: ChessBoard): {
       whitesCaptured.push(piece)
     }
   }
+  console.log(initialWhitePieces, whitesCaptured)
 
   const finalBlackPiecesCopy = [...finalBlackPieces]
   for (const piece of initialBlackPieces) {
