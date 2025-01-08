@@ -436,7 +436,7 @@ class Board:
                 empty,
                 empty,
                 pawn_white,
-                pawn_white,
+                empty,
             ],
             [
                 pawn_black,
