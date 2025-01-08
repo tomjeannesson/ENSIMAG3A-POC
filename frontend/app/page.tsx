@@ -217,7 +217,7 @@ export default function Home() {
       setInterval(async () => {
         const res = await axios.get("http://poc-thaj:8000/")
         setBoard(res.data)
-        const captured = getCapturedPieces(board)
+        const captured = getCapturedPieces(res.data)
         setWhitesCaptured(captured.whitesCaptured)
         setBlacksCaptured(captured.blacksCaptured)
       }, 1000)
