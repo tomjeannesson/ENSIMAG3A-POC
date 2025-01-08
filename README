@@ -11,6 +11,8 @@
 
     `pip install "fastapi[standard]"`
 
+    `pip install numpy`
+
 - Frontend:
   - next:
   
@@ -21,7 +23,7 @@
 - Backend:
   - FastAPI:
 
-    `fastapi dev api.py`
+    `fastapi run api.py`
 
 - Frontend:
   - next:

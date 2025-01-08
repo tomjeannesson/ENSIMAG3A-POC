@@ -2,6 +2,11 @@
 Module to manage the memory of the chessboard.
 """
 
+import json
+
+import numpy as np
+
+
 class Piece:
     "Abstract class of chess pieces"
 
@@ -522,7 +527,7 @@ class Board:
                     bit_pos_start, game_tmp
                 ):
                     return False
-    
+
     def board_to_bits(self):
         bits = ""
         for i in range(8):
@@ -532,18 +537,17 @@ class Board:
                 else:
                     bits += "1"
         return bits
-    
+
     def update(self, bits_string):
         state = self.board_to_bits()
         if bits_string != state:
             for i in range(64):
                 if bits_string[i] != state[i]:
                     if bits_string[i] == "1":
-                        self.piece_moved = self.board[i//8][i%8]
+                        self.piece_moved = self.board[i // 8][i % 8]
                     if bits_string[i] == "0":
-                        self.board[i//8][i%8] = self.piece_moved
+                        self.board[i // 8][i % 8] = self.piece_moved
                         self.piece_moved = None
-
 
 
 if __name__ == "__main__":
