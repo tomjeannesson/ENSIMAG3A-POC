@@ -553,7 +553,8 @@ class Board:
             for i in range(64):
                 if bits_string[i] != state[i]:
                     if bits_string[i] == "1":
-                        self.piece_moved = self.board[i // 8][i % 8]
+                        if self.piece_moved is not None:
+                            self.piece_moved = self.board[i // 8][i % 8]
                         self.board[i // 8][i % 8] = {}
                     if bits_string[i] == "0":
                         self.board[i // 8][i % 8] = self.piece_moved
