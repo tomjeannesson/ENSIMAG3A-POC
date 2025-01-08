@@ -34,12 +34,10 @@ def read_root():
         data = json.load(f)
         if len(data) == 64:
             board.update(data)
-            with open("logs.txt") as l:
-                print("update", file=l)
+            print("update")
 
         else:
-            with open("logs.txt") as l:
-                print(len(data), data, file=l)
+            print(len(data), data)
     boardJson = []
     for i in range(8):
         row = []
