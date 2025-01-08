@@ -136,6 +136,7 @@ function getCapturedPieces(finalBoard: ChessBoard): {
   const finalWhitePiecesCopy = [...finalWhitePieces]
   for (const piece of initialWhitePieces) {
     const index = finalWhitePiecesCopy.indexOf(piece)
+    console.log(index, piece)
     if (index !== -1) {
       finalWhitePiecesCopy.splice(index, 1)
     } else {
@@ -147,12 +148,14 @@ function getCapturedPieces(finalBoard: ChessBoard): {
   const finalBlackPiecesCopy = [...finalBlackPieces]
   for (const piece of initialBlackPieces) {
     const index = finalBlackPiecesCopy.indexOf(piece)
+    console.log(index, piece)
     if (index !== -1) {
       finalBlackPiecesCopy.splice(index, 1)
     } else {
       blacksCaptured.push(piece)
     }
   }
+  console.log(initialBlackPieces, blacksCaptured)
 
   return {
     whitesCaptured,
