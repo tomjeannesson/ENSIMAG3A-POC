@@ -19,7 +19,10 @@ while True:
     data = ser.readline()
     if data.decode() != "\n":
         with open(data_file_path, "w") as f:
-            json.dump(data.decode()[:-2], f)
+            json.dump(
+                f"1111111111111100000000000000000000000000000000{data.decode()[:-2]}11111111111111",
+                f,
+            )
             print(
                 f"1111111111111100000000000000000000000000000000{data.decode()[:-2]}11111111111111"
             )
