@@ -26,8 +26,6 @@ app.add_middleware(
 )
 
 board = Board()
-with open("data.json") as f:
-    json.dump("0000000000000011111111111111111111111111111111110000000000000000", f)
 
 
 @app.get("/")
