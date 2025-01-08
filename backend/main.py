@@ -21,6 +21,6 @@ while True:
         with open(data_file_path, "w") as f:
             print(data.decode())
             json.dump(
-                f"0000000000000011111111111111111111111111111111{data.decode()[0]}{data.decode()[1]}000000{data.decode()[3]}{data.decode()[2]}00000000",
+                f"0000000000000011111111111111111111111111111111{data.decode()[1]}{data.decode()[0]}000000{data.decode()[3]}{data.decode()[2]}00000000",
                 f,
             )
