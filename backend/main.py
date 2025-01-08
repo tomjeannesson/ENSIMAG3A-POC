@@ -20,4 +20,6 @@ while True:
     if data.decode() != "\n":
         with open(data_file_path, "w") as f:
             json.dump(data.decode()[:-2], f)
-            print(data.decode()[:-2])
+            print(
+                f"1111111111111100000000000000000000000000000000{data.decode()[:-2]}11111111111111"
+            )
