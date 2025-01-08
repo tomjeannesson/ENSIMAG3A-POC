@@ -34,7 +34,7 @@ def read_root():
         data = json.load(f)
         if len(data) == 64:
             board.update(data)
-            print(board.board_to_bits())
+            print(board.board_to_bits(), data, board.board_to_bits() == data)
 
     boardJson = []
     for i in range(8):

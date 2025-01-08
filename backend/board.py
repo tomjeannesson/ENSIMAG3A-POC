@@ -463,7 +463,6 @@ class Board:
         self.king_white = [0, 4]
         self.king_black = [7, 4]
         self.piece_moved = None
-        print("Board initialized")
 
     def state_board(self) -> list:
         """
