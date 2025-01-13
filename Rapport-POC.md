@@ -88,7 +88,7 @@ TOM
 
 ### Backend
 
-Pour traduire le mouvement de notre chaîne de bits à un mouvement, on procède à une division euclidienne par 8 pour un plateau de 64 cases, 2 pour 4 cases. Le quotient et le reste nous donnent la ligne et la colonne de la pièce jouée.
+Pour traduire le mouvement de notre chaîne de bits à un mouvement, on procède à une division euclidienne par 8 pour un plateau de 64 cases. Le quotient et le reste nous donnent la ligne et la colonne de la pièce jouée.
 
 Lors d’un mouvement de l’utilisateur, une structure \`Board\` détecte la pièce jouée. La classe pièce est une classe abstraite dont les pièces héritent de la méthode \`legal\` calculant si le coup joué est légal. Elle a un attribut représentant sa couleur
 
