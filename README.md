@@ -2,7 +2,7 @@
 
 All documentation is available here: [https://github.com/tomjeannesson/ENSIMAG3A-POC/wiki](https://github.com/tomjeannesson/ENSIMAG3A-POC/wiki)
 
-![](/video/POC.mov)
+![](video/POC.mov)
 
 ## Install
 
