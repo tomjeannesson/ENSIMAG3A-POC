@@ -2,6 +2,8 @@
 
 All documentation is available here: [https://github.com/tomjeannesson/ENSIMAG3A-POC/wiki](https://github.com/tomjeannesson/ENSIMAG3A-POC/wiki)
 
+Video demonstration:
+
 https://github.com/user-attachments/assets/7a0880b7-a89e-4061-9fed-c8a43627be5d
 
 
